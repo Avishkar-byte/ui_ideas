@@ -1,7 +1,9 @@
-import { Typography } from '@cred/neopop-web/lib/components';
+// src/pages/blogs.tsx
+
+import React from 'react';
+import Typography from '@mui/material/Typography';
 import styled from 'styled-components';
 import { colorPalette } from '../styles/colors';
-import { FontType } from '@cred/neopop-web/lib/primitives';
 import Image from 'next/image';
 
 const MainContainer = styled.div`
@@ -13,7 +15,11 @@ const MainContainer = styled.div`
 const BlogHeader = styled.div`
   padding: 100px 20px 60px;
   text-align: center;
-  background: linear-gradient(180deg, rgba(255, 215, 0, 0.1) 0%, rgba(0, 0, 0, 0) 100%);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 215, 0, 0.1) 0%,
+    rgba(0, 0, 0, 0) 100%
+  );
 `;
 
 const BlogGrid = styled.div`
@@ -98,40 +104,44 @@ const BlogReadMore = styled.a`
 const blogs = [
   {
     id: 1,
-    title: "Building Meaningful Connections in the Digital Age",
-    excerpt: "Discover how college students are leveraging technology to create lasting friendships and professional networks in today's digital world.",
-    image: "/meaninful.png",
-    date: "March 15, 2024",
-    readTime: "5 min read",
-    category: "Community"
+    title: 'Building Meaningful Connections in the Digital Age',
+    excerpt:
+      "Discover how college students are leveraging technology to create lasting friendships and professional networks in today's digital world.",
+    image: '/meaninful.png',
+    date: 'March 15, 2024',
+    readTime: '5 min read',
+    category: 'Community',
   },
   {
     id: 2,
-    title: "Privacy First: The Future of Social Networking",
-    excerpt: "Why privacy-focused platforms are becoming increasingly important for students and how Gingr is leading the charge.",
-    image: "/secured.png",
-    date: "March 12, 2024",
-    readTime: "4 min read",
-    category: "Privacy & Security"
+    title: 'Privacy First: The Future of Social Networking',
+    excerpt:
+      'Why privacy-focused platforms are becoming increasingly important for students and how Gingr is leading the charge.',
+    image: '/secured.png',
+    date: 'March 12, 2024',
+    readTime: '4 min read',
+    category: 'Privacy & Security',
   },
   {
     id: 3,
-    title: "Finding Your Tribe: Interest-Based Communities",
-    excerpt: "How to connect with like-minded students and build communities around shared interests and academic goals.",
-    image: "/interest_based.png",
-    date: "March 10, 2024",
-    readTime: "6 min read",
-    category: "Features"
+    title: 'Finding Your Tribe: Interest-Based Communities',
+    excerpt:
+      'How to connect with like-minded students and build communities around shared interests and academic goals.',
+    image: '/interest_based.png',
+    date: 'March 10, 2024',
+    readTime: '6 min read',
+    category: 'Features',
   },
   {
     id: 4,
-    title: "The Power of Anonymous Expression",
-    excerpt: "Understanding the benefits of anonymous communication in fostering open discussions and authentic connections.",
-    image: "/anym.png",
-    date: "March 8, 2024",
-    readTime: "4 min read",
-    category: "Privacy & Security"
-  }
+    title: 'The Power of Anonymous Expression',
+    excerpt:
+      'Understanding the benefits of anonymous communication in fostering open discussions and authentic connections.',
+    image: '/anym.png',
+    date: 'March 8, 2024',
+    readTime: '4 min read',
+    category: 'Privacy & Security',
+  },
 ];
 
 export default function Blogs() {
@@ -139,27 +149,28 @@ export default function Blogs() {
     <MainContainer>
       <BlogHeader>
         <Typography
-          color={colorPalette.yellow}
-          fontSize={48}
-          fontWeight={700}
-          fontType="heading"
-          style={{ marginBottom: '20px' }}
+          variant="h3"
+          component="h1"
+          gutterBottom
+          sx={{ color: colorPalette.yellow }}
         >
           Gingr Blog
         </Typography>
         <Typography
-          color={colorPalette.white}
-          fontSize={20}
-          fontWeight={400}
-          fontType="body"
-          style={{ opacity: 0.9, maxWidth: '600px', margin: '0 auto' }}
+          variant="body1"
+          sx={{
+            color: colorPalette.white,
+            opacity: 0.9,
+            maxWidth: 600,
+            margin: '0 auto',
+          }}
         >
           Insights, stories, and tips for building meaningful college connections
         </Typography>
       </BlogHeader>
 
       <BlogGrid>
-        {blogs.map(blog => (
+        {blogs.map((blog) => (
           <BlogCard key={blog.id}>
             <BlogImage>
               <Image
@@ -176,20 +187,16 @@ export default function Blogs() {
               </BlogDate>
               <BlogCategory>{blog.category}</BlogCategory>
               <Typography
-                color={colorPalette.white}
-                fontSize={24}
-                fontWeight={600}
-                fontType="heading"
-                style={{ marginBottom: '10px' }}
+                variant="h5"
+                component="h2"
+                gutterBottom
+                sx={{ color: colorPalette.white }}
               >
                 {blog.title}
               </Typography>
               <Typography
-                color={colorPalette.white}
-                fontSize={16}
-                fontWeight={400}
-                fontType="body"
-                style={{ opacity: 0.8, marginBottom: '15px' }}
+                variant="body2"
+                sx={{ color: colorPalette.white, opacity: 0.8, mb: 2 }}
               >
                 {blog.excerpt}
               </Typography>
@@ -202,4 +209,4 @@ export default function Blogs() {
       </BlogGrid>
     </MainContainer>
   );
-} 
+}
