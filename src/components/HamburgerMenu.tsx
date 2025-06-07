@@ -3,12 +3,11 @@ import styled from 'styled-components';
 import {
   Drawer,
   List,
-  ListItem,
   ListItemIcon,
   ListItemText,
+  ListItemButton,
   IconButton,
   Divider,
-  ListItemProps
 } from '@mui/material';
 import {
   Person as PersonIcon,
@@ -17,13 +16,13 @@ import {
   Help as HelpIcon,
   Menu as MenuIcon,
   Close as CloseIcon,
-  Groups as GroupsIcon
+  Groups as GroupsIcon,
 } from '@mui/icons-material';
 import { useRouter } from 'next/router';
 import { colorPalette } from '../styles/colors';
 
 const MenuButton = styled(IconButton)`
-  color: #FFD700 !important;
+  color: #ffd700 !important;
   margin-right: 16px !important;
 `;
 
@@ -44,10 +43,8 @@ const StyledDrawer = styled(Drawer)`
   }
 `;
 
-// StyledListItem now forwards ListItemProps to support `button` prop
-const StyledListItem = styled((props: ListItemProps) => (
-  <ListItem {...props} />
-))`
+// Use ListItemButton for clickable list items
+const StyledListItem = styled(ListItemButton)`
   margin: 8px 16px !important;
   border-radius: 8px !important;
   transition: all 0.3s ease !important;
@@ -57,7 +54,7 @@ const StyledListItem = styled((props: ListItemProps) => (
   }
 
   .MuiListItemIcon-root {
-    color: #FFD700 !important;
+    color: #ffd700 !important;
     min-width: 40px !important;
   }
 
@@ -111,16 +108,15 @@ const HamburgerMenu: React.FC = () => {
         <DrawerHeader>
           <img src="/logo.png" alt="Gingr Logo" height="32" />
           <IconButton onClick={toggleDrawer(false)}>
-            <CloseIcon style={{ color: '#FFD700' }} />
+            <CloseIcon style={{ color: '#ffd700' }} />
           </IconButton>
         </DrawerHeader>
 
         <StyledDivider />
 
-        <List>
+        <List disablePadding>
           {menuItems.map((item) => (
             <StyledListItem
-              button
               key={item.text}
               onClick={() => handleNavigation(item.path)}
             >
