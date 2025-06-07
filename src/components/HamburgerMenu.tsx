@@ -1,13 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
-import { 
-  Drawer, 
-  List, 
-  ListItem, 
-  ListItemIcon, 
+import {
+  Drawer,
+  List,
+  ListItem,
+  ListItemIcon,
   ListItemText,
   IconButton,
-  Divider
+  Divider,
+  ListItemProps
 } from '@mui/material';
 import {
   Person as PersonIcon,
@@ -43,7 +44,10 @@ const StyledDrawer = styled(Drawer)`
   }
 `;
 
-const StyledListItem = styled(ListItem)`
+// StyledListItem now forwards ListItemProps to support `button` prop
+const StyledListItem = styled((props: ListItemProps) => (
+  <ListItem {...props} />
+))`
   margin: 8px 16px !important;
   border-radius: 8px !important;
   transition: all 0.3s ease !important;
@@ -75,11 +79,13 @@ const menuItems = [
   { text: 'Help & Support', icon: <HelpIcon />, path: '/support' },
 ];
 
-const HamburgerMenu = () => {
+const HamburgerMenu: React.FC = () => {
   const [isOpen, setIsOpen] = React.useState(false);
   const router = useRouter();
 
-  const toggleDrawer = (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
+  const toggleDrawer = (open: boolean) => (
+    event: React.KeyboardEvent | React.MouseEvent
+  ) => {
     if (
       event.type === 'keydown' &&
       ((event as React.KeyboardEvent).key === 'Tab' ||
@@ -97,19 +103,11 @@ const HamburgerMenu = () => {
 
   return (
     <>
-      <MenuButton
-        edge="start"
-        aria-label="menu"
-        onClick={toggleDrawer(true)}
-      >
+      <MenuButton edge="start" aria-label="menu" onClick={toggleDrawer(true)}>
         <MenuIcon />
       </MenuButton>
 
-      <StyledDrawer
-        anchor="left"
-        open={isOpen}
-        onClose={toggleDrawer(false)}
-      >
+      <StyledDrawer anchor="left" open={isOpen} onClose={toggleDrawer(false)}>
         <DrawerHeader>
           <img src="/logo.png" alt="Gingr Logo" height="32" />
           <IconButton onClick={toggleDrawer(false)}>
@@ -136,4 +134,4 @@ const HamburgerMenu = () => {
   );
 };
 
-export default HamburgerMenu; 
+export default HamburgerMenu;
